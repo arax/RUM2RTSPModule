@@ -1,0 +1,35 @@
+START RAP/1.0
+Module: listener/udp
+Port: 1234
+Bind-Address: 0.0.0.0
+
+START RAP/1.0
+Module: msg-interface/tcp
+Port: 65001
+
+START RAP/1.0
+Module: msg-interface/unix
+Channel: /tmp/reflector
+
+START RAP/1.0
+Module: msg-interface/rtsp
+Bind-Address: 0.0.0.0
+Port: 6666
+Listener: listener/udp-0.0.0.0:1234
+Socket: /tmp/reflector
+
+ACL RAP/1.0
+Target: aaa/routing
+Address: 0.0.0.0/0
+Listener: reflector/listener
+Access: rw
+
+START RAP/1.0
+Module: processor/filter
+
+PROCESS RAP/1.0
+From: 0.0.0.0/0
+To: 0.0.0.0/0
+Listener: listener/udp-0.0.0.0:1234
+Processor: processor/filter-0
+
