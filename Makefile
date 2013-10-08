@@ -1,5 +1,5 @@
 INCLUDE_H=-I/usr/local/include -I/usr/include -I./include
-GLIB_H=-I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include
+GLIB_H=-I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/lib/x86_64-linux-gnu/glib-2.0/include
 LIBS_SO=-lglib-2.0 -lev
 
 all: rtsp_module filter copy
